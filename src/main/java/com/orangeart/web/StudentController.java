@@ -1,17 +1,17 @@
 package com.orangeart.web;
 
-import com.orangeart.domain.entity.StudentDO;
 import com.orangeart.protocal.ApiResponse;
-import com.orangeart.protocal.PageRequest;
 import com.orangeart.protocal.Pagination;
 import com.orangeart.protocal.model.StudentVO;
+import com.orangeart.protocal.request.CreateStudentRequest;
+import com.orangeart.protocal.request.FindStudentRequest;
 import com.orangeart.service.StudentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -30,10 +30,16 @@ public class StudentController {
     private StudentService studentService;
 
 
-    @ApiOperation(value = "查询", notes = "list")
-    @GetMapping("/list")
-    public ApiResponse<Pagination<StudentVO>> list(PageRequest request) {
-        return ApiResponse.success(studentService.list(request));
+    @ApiOperation(value = "学员查询", notes = "find")
+    @GetMapping("/find")
+    public ApiResponse<Pagination<StudentVO>> find(FindStudentRequest request) {
+        return ApiResponse.success(studentService.find(request));
     }
 
+
+    @ApiOperation(value = "创建学员", notes = "create")
+    @PostMapping("/create")
+    public ApiResponse<Boolean> find(CreateStudentRequest request) {
+        return ApiResponse.success(studentService.create(request));
+    }
 }

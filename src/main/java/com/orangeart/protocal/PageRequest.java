@@ -7,22 +7,27 @@ package com.orangeart.protocal;
  * @Email:xiantao.wu@guanaitong.com
  */
 public class PageRequest {
-    private int pageSize;
-    private int pageNo;
+    private Integer pageNo = 1;
+    private Integer pageSize = 20;
+    private transient Integer offset;
 
-    public int getPageSize() {
+    public Integer getPageSize() {
         return pageSize;
     }
 
-    public void setPageSize(int pageSize) {
+    public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
     }
 
-    public int getPageNo() {
+    public Integer getPageNo() {
         return pageNo;
     }
 
-    public void setPageNo(int pageNo) {
+    public void setPageNo(Integer pageNo) {
         this.pageNo = pageNo;
+    }
+
+    public Integer getOffset() {
+        return (pageNo - 1) * pageSize;
     }
 }

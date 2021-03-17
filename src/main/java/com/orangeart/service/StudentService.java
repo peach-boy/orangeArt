@@ -1,15 +1,17 @@
 package com.orangeart.service;
 
 import com.google.common.collect.Lists;
-import com.orangeart.domain.entity.StudentDO;
-import com.orangeart.domain.mapper.StudentMapper;
-import com.orangeart.protocal.PageRequest;
+import com.orangeart.domain.dao.StudentMapper;
+import com.orangeart.domain.model.StudentDO;
 import com.orangeart.protocal.Pagination;
 import com.orangeart.protocal.model.StudentVO;
+import com.orangeart.protocal.request.CreateStudentRequest;
+import com.orangeart.protocal.request.FindStudentRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @Description: TODO
@@ -23,19 +25,37 @@ public class StudentService {
     @Resource
     private StudentMapper studentMapper;
 
-    public Pagination<StudentVO> list(PageRequest request) {
-        //List<StudentDO> studentDOList = studentMapper.list();
+    public Pagination<StudentVO> find(FindStudentRequest request) {
+        int count = studentMapper.findCount(request);
+        if (count == 0) {
+            return new Pagination<>(0, Lists.newArrayList(), request);
+        }
 
-        StudentVO student = new StudentVO();
-        student.setId(1);
-        student.setName("库里");
-        student.setStatus(1);
-        student.setUnusedQuantity(10);
-        student.setUsedQuantity(20);
-        student.setDescription("第一个学生");
+        List<StudentDO> studentDOList = studentMapper.find(request);
+        List studentVOList = studentDOList.stream().map(studentDO -> {
+            StudentVO student = new StudentVO();
+            student.setId(studentDO.getId());
+            student.setName(studentDO.getName());
+            student.setUnusedQuantity(10);
+            student.setUsedQuantity(20);
+            student.setDescription("我是一个学生");
+            return student;
+        }).collect(Collectors.toList());
 
-        List studentDOList= Lists.newArrayList(student);
-        return new Pagination<>(10, studentDOList, request);
+        return new Pagination<>(count, studentVOList, request);
+    }
+
+    public Boolean create(CreateStudentRequest request) {
+        StudentDO studentDO = new StudentDO();
+        studentDO.setName(request.getName());
+        studentDO.setAddress(request.getAddress());
+        studentDO.setBirthYear(request.getBirthYear());
+        studentDO.setMobile(request.getMobile());
+        studentDO.setGender(request.getGender());
+        studentDO.setChannel(request.getChannel());
+        studentMapper.insert(studentDO);
+
+        return Boolean.TRUE;
     }
 
 }

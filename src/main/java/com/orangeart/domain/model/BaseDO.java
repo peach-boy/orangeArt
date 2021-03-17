@@ -1,4 +1,4 @@
-package com.orangeart.domain.entity;
+package com.orangeart.domain.model;
 
 import java.util.Date;
 
