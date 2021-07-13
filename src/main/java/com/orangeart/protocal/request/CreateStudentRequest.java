@@ -1,6 +1,11 @@
 package com.orangeart.protocal.request;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
+
 /**
  * @Description: TODO
  * @Auther: xiantao.wu
@@ -10,7 +15,8 @@ package com.orangeart.protocal.request;
 public class CreateStudentRequest {
     private String name;
 
-    private String birthYear;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+    private Date birthYear;
 
     private String address;
 
@@ -28,11 +34,11 @@ public class CreateStudentRequest {
         this.name = name;
     }
 
-    public String getBirthYear() {
+    public Date getBirthYear() {
         return birthYear;
     }
 
-    public void setBirthYear(String birthYear) {
+    public void setBirthYear(Date birthYear) {
         this.birthYear = birthYear;
     }
 
@@ -67,4 +73,6 @@ public class CreateStudentRequest {
     public void setChannel(Integer channel) {
         this.channel = channel;
     }
+
+
 }

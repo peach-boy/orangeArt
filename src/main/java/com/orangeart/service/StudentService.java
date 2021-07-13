@@ -1,6 +1,7 @@
 package com.orangeart.service;
 
 import com.google.common.collect.Lists;
+import com.orangeart.constant.StudentStatusEnum;
 import com.orangeart.domain.dao.StudentMapper;
 import com.orangeart.domain.model.StudentDO;
 import com.orangeart.protocal.Pagination;
@@ -39,6 +40,7 @@ public class StudentService {
             student.setUnusedQuantity(10);
             student.setUsedQuantity(20);
             student.setDescription("我是一个学生");
+            student.setStatus(studentDO.getStatus());
             return student;
         }).collect(Collectors.toList());
 
@@ -53,6 +55,7 @@ public class StudentService {
         studentDO.setMobile(request.getMobile());
         studentDO.setGender(request.getGender());
         studentDO.setChannel(request.getChannel());
+        studentDO.setStatus(StudentStatusEnum.NEED_PAY.getStatus());
         studentMapper.insert(studentDO);
 
         return Boolean.TRUE;

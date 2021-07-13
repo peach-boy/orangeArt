@@ -3,19 +3,20 @@
 <mapper namespace="com.orangeart.domain.dao.StudentMapper">
 
     <sql id="columns">
-      id,name,birthYear,gender,address,channel,timeCreated,timeModified
+      id,name,birthYear,gender,address,channel,status,timeCreated,timeModified
     </sql>
 
     <insert id="insert" parameterType="com.orangeart.domain.model.StudentDO" keyProperty="id"
             useGeneratedKeys="true">
         insert into student
-        (name,birthYear,gender,address,channel)
+        (name,birthYear,gender,address,channel,status)
         values
         ( #{name,jdbcType=VARCHAR},
         #{birthYear,jdbcType=DATE},
         #{gender,jdbcType=INTEGER},
         #{address,jdbcType=VARCHAR},
-        #{channel,jdbcType=INTEGER})
+        #{channel,jdbcType=INTEGER},
+        #{status,jdbcType=INTEGER})
     </insert>
 
 

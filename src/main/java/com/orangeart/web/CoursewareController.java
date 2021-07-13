@@ -16,30 +16,27 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 /**
- * @Description: 学员相关
+ * @Description: 课件相关
  * @Auther: ThomasWu
  * @Date: 2019/8/29 20:48
  * @Email:1414924381@qq.com
  */
-@Api("学员相关")
+@Api("课件相关")
 @RestController
-@RequestMapping(path = "/student")
-public class StudentController {
-
-    @Autowired
-    private StudentService studentService;
+@RequestMapping(path = "/courseware")
+public class CoursewareController {
 
 
-    @ApiOperation(value = "学员查询", notes = "find")
+    @ApiOperation(value = "课件查询", notes = "find")
     @GetMapping("/find")
-    public ApiResponse<Pagination<StudentVO>> find(FindStudentRequest request) {
-        return ApiResponse.success(studentService.find(request));
+    public ApiResponse<Pagination<StudentVO>> find() {
+        return null;
     }
 
 
-    @ApiOperation(value = "创建学员", notes = "create")
+    @ApiOperation(value = "录入课件", notes = "create")
     @PostMapping("/create")
-    public ApiResponse<Boolean> create(CreateStudentRequest request) {
-        return ApiResponse.success(studentService.create(request));
+    public ApiResponse<Boolean> create() {
+        return null;
     }
 }

@@ -1,5 +1,7 @@
 package com.orangeart.domain.model;
 
+import java.util.Date;
+
 /**
  * @Description: TODO
  * @Auther: xiantao.wu
@@ -9,7 +11,7 @@ package com.orangeart.domain.model;
 public class StudentDO extends BaseDO {
     private String name;
 
-    private String birthYear;
+    private Date birthYear;
 
     private String address;
 
@@ -19,6 +21,8 @@ public class StudentDO extends BaseDO {
 
     private Integer channel;
 
+    private Integer status;
+
     public String getName() {
         return name;
     }
@@ -27,11 +31,11 @@ public class StudentDO extends BaseDO {
         this.name = name;
     }
 
-    public String getBirthYear() {
+    public Date getBirthYear() {
         return birthYear;
     }
 
-    public void setBirthYear(String birthYear) {
+    public void setBirthYear(Date birthYear) {
         this.birthYear = birthYear;
     }
 
@@ -65,5 +69,13 @@ public class StudentDO extends BaseDO {
 
     public void setChannel(Integer channel) {
         this.channel = channel;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 }

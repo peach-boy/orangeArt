@@ -1,5 +1,7 @@
 package com.orangeart.protocal;
 
+import com.orangeart.exception.ErrorCode;
+
 import java.io.Serializable;
 
 /**
@@ -22,6 +24,20 @@ public class ApiResponse<T> implements Serializable {
         apiResponse.setCode(0000);
         apiResponse.setMsg("ok");
         apiResponse.setData(data);
+        return apiResponse;
+    }
+
+    public static <T> ApiResponse<T> fail(ErrorCode errorCode) {
+        ApiResponse<T> apiResponse = new ApiResponse();
+        apiResponse.setCode(errorCode.getErrorCode());
+        apiResponse.setMsg(errorCode.getErrorMsg());
+        return apiResponse;
+    }
+
+    public static <T> ApiResponse<T> fail(int code, String msg) {
+        ApiResponse<T> apiResponse = new ApiResponse();
+        apiResponse.setCode(code);
+        apiResponse.setMsg(msg);
         return apiResponse;
     }
 
