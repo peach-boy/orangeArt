@@ -3,7 +3,6 @@ package com.orangeart.domain.dao;
 import com.orangeart.domain.model.StudentDO;
 import com.orangeart.protocal.request.FindStudentRequest;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -15,7 +14,7 @@ import java.util.List;
  * @Email:1414924381@qq.com
  */
 @Mapper
-public interface StudentMapper {
+public interface StudentClassRelationMapper {
     int insert(StudentDO studentDO);
 
     List<StudentDO> find(FindStudentRequest request);

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.orangeart.domain.dao.StudentClassRelationMapper">
+
+    <sql id="base_columns">
+        studentId,courseOrderId,beginDate,endDate,status,type
+    </sql>
+
+    <insert id="insert" parameterType="com.orangeart.domain.model.StudentClassRelationDO" keyProperty="id"
+            useGeneratedKeys="true">
+        insert into student_class_relation
+        (<include refid="base_columns"/>)
+        values
+        (
+        #{studentId,jdbcType=INTEGER},
+        #{courseOrderId,jdbcType=INTEGER},
+        #{beginDate,jdbcType=DATE},
+        #{endDate,jdbcType=DATE},
+        #{status,jdbcType=INTEGER},
+        #{type,jdbcType=INTEGER}
+        )
+    </insert>
+
+
+
+
+</mapper>

@@ -6,7 +6,7 @@ import java.util.Date;
  * @Description: TODO
  * @Auther: xiantao.wu
  * @Date: 2021/3/15 22:22
- * @Email:xiantao.wu@guanaitong.com
+ * @Email:1414924381@qq.com
  */
 public class StudentDO extends BaseDO {
     private String name;

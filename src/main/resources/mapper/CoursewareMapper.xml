@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.orangeart.domain.dao.CoursewareMapper">
+
+    <sql id="base_columns">
+        coursewareName,fileUrl,desc
+    </sql>
+
+    <insert id="insert" parameterType="com.orangeart.domain.model.CoursewareDO" keyProperty="id"
+            useGeneratedKeys="true">
+        insert into courseware
+        (<include refid="base_columns"/>)
+        values
+        (
+        #{coursewareName,jdbcType=VARCHAR},
+        #{fileUrl,jdbcType=VARCHAR},
+        #{desc,jdbcType=VARCHAR}
+        )
+    </insert>
+
+
+</mapper>

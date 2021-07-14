@@ -4,7 +4,7 @@ package com.orangeart.protocal;
  * @Description: TODO
  * @Auther: xiantao.wu
  * @Date: 2021/3/15 23:09
- * @Email:xiantao.wu@guanaitong.com
+ * @Email:1414924381@qq.com
  */
 public class PageRequest {
     private Integer pageNo = 1;

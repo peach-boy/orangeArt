@@ -7,7 +7,7 @@ import java.util.List;
  * @Description: TODO
  * @Auther: xiantao.wu
  * @Date: 2021/3/15 22:52
- * @Email:xiantao.wu@guanaitong.com
+ * @Email:1414924381@qq.com
  */
 public class Pagination<T> implements Serializable {
     public static final int DEFAULT_PAGE_NUM = 1;

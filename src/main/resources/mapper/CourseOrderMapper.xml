@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.orangeart.domain.dao.CourseOrderMapper">
+    <sql id="base_columns">
+        studentId
+        ,totalAmt,price,totalQuantity,usedQuantity,remainQuantity,payChannel,orderTime,status,overTime
+    </sql>
+
+    <insert id="insert" parameterType="com.orangeart.domain.model.CourseOrderDO" keyProperty="id"
+            useGeneratedKeys="true">
+        insert into course_order
+        (<include refid="base_columns"/>)
+        values
+        (
+        #{studentId,jdbcType=INTEGER},
+        #{totalAmt,jdbcType=DECIMAL},
+        #{price,jdbcType=DECIMAL},
+        #{totalQuantity,jdbcType=INTEGER},
+        #{usedQuantity,jdbcType=INTEGER},
+        #{remainQuantity,jdbcType=INTEGER},
+        #{payChannel,jdbcType=INTEGER},
+        #{orderTime,jdbcType=DATE},
+        #{status,jdbcType=INTEGER},
+        #{overTime,jdbcType=DATE}
+        )
+    </insert>
+
+</mapper>

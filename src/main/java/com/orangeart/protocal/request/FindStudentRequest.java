@@ -6,7 +6,7 @@ import com.orangeart.protocal.PageRequest;
  * @Description: TODO
  * @Auther: xiantao.wu
  * @Date: 2021/3/17 21:30
- * @Email:xiantao.wu@guanaitong.com
+ * @Email:1414924381@qq.com
  */
 public class FindStudentRequest extends PageRequest {
     private String name;

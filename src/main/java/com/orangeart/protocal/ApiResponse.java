@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @Description: TODO
  * @Auther: xiantao.wu
  * @Date: 2021/3/15 22:50
- * @Email:xiantao.wu@guanaitong.com
+ * @Email:1414924381@qq.com
  */
 public class ApiResponse<T> implements Serializable {
     private static final long serialVersionUID = 1L;

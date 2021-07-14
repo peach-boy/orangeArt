@@ -6,7 +6,7 @@ import java.util.Date;
  * @Description: DO基类
  * @Auther: xiantao.wu
  * @Date: 2021/3/15 22:30
- * @Email:xiantao.wu@guanaitong.com
+ * @Email:1414924381@qq.com
  */
 public class BaseDO {
     private Integer id;
