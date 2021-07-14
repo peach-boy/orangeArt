@@ -3,7 +3,7 @@
 <mapper namespace="com.orangeart.domain.dao.CoursewareMapper">
 
     <sql id="base_columns">
-        coursewareName,fileUrl,desc
+        coursewareName,fileUrl,remark
     </sql>
 
     <insert id="insert" parameterType="com.orangeart.domain.model.CoursewareDO" keyProperty="id"

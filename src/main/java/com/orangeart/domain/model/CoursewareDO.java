@@ -8,7 +8,7 @@ public class CoursewareDO extends BaseDO {
 
     private String fileUrl;
 
-    private String desc;
+    private String remark;
 
     public String getCoursewareName() {
         return coursewareName;
@@ -26,11 +26,12 @@ public class CoursewareDO extends BaseDO {
         this.fileUrl = fileUrl;
     }
 
-    public String getDesc() {
-        return desc;
+
+    public String getRemark() {
+        return remark;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }

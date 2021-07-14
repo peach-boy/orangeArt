@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orangeart.domain.dao.ClassMapper">
 
-    <sql id="columns">
+    <sql id="base_columns">
         weekDay
-        ,beginTime,endTime,subjectId,status,desc
+        ,beginTime,endTime,subjectId,status,remark
     </sql>
 
     <insert id="insert" parameterType="com.orangeart.domain.model.ClassDO" keyProperty="id"
             useGeneratedKeys="true">
-        insert into course_order
+        insert into class
         (<include refid="base_columns"/>)
         values
         (
@@ -18,7 +18,7 @@
         #{endTime,jdbcType=DATE},
         #{subjectId,jdbcType=INTEGER},
         #{status,jdbcType=INTEGER}),
-        #{desc,jdbcType=VARCHAR}
+        #{remark,jdbcType=VARCHAR}
         )
     </insert>
 

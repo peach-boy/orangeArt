@@ -23,6 +23,8 @@ public class StudentDO extends BaseDO {
 
     private Integer status;
 
+    private String remark;
+
     public String getName() {
         return name;
     }
@@ -77,5 +79,13 @@ public class StudentDO extends BaseDO {
 
     public void setStatus(Integer status) {
         this.status = status;
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }

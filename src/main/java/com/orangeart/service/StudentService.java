@@ -8,6 +8,7 @@ import com.orangeart.protocal.Pagination;
 import com.orangeart.protocal.model.StudentVO;
 import com.orangeart.protocal.request.CreateStudentRequest;
 import com.orangeart.protocal.request.FindStudentRequest;
+import com.orangeart.util.OrangeArtDateUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -39,8 +40,9 @@ public class StudentService {
             student.setName(studentDO.getName());
             student.setUnusedQuantity(10);
             student.setUsedQuantity(20);
-            student.setDescription("我是一个学生");
+            student.setRemark(studentDO.getRemark());
             student.setStatus(studentDO.getStatus());
+
             return student;
         }).collect(Collectors.toList());
 
@@ -51,11 +53,12 @@ public class StudentService {
         StudentDO studentDO = new StudentDO();
         studentDO.setName(request.getName());
         studentDO.setAddress(request.getAddress());
-        studentDO.setBirthYear(request.getBirthYear());
+        studentDO.setBirthYear(OrangeArtDateUtils.parseStrToDate(request.getBirthYear(), OrangeArtDateUtils.DAY_PATTARN));
         studentDO.setMobile(request.getMobile());
         studentDO.setGender(request.getGender());
         studentDO.setChannel(request.getChannel());
         studentDO.setStatus(StudentStatusEnum.NEED_PAY.getStatus());
+        studentDO.setRemark(request.getRemark());
         studentMapper.insert(studentDO);
 
         return Boolean.TRUE;

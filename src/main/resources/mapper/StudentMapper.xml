@@ -2,21 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.orangeart.domain.dao.StudentMapper">
 
-    <sql id="columns">
-      id,name,birthYear,gender,address,channel,status,timeCreated,timeModified
+    <sql id="base_columns">
+    name,birthYear,gender,address,channel,status,remark
     </sql>
 
     <insert id="insert" parameterType="com.orangeart.domain.model.StudentDO" keyProperty="id"
             useGeneratedKeys="true">
         insert into student
-        (name,birthYear,gender,address,channel,status)
+        (<include refid="base_columns"/>)
         values
-        ( #{name,jdbcType=VARCHAR},
+        (
+         #{name,jdbcType=VARCHAR},
         #{birthYear,jdbcType=DATE},
         #{gender,jdbcType=INTEGER},
         #{address,jdbcType=VARCHAR},
         #{channel,jdbcType=INTEGER},
-        #{status,jdbcType=INTEGER})
+        #{status,jdbcType=INTEGER},
+        #{remark,jdbcType=VARCHAR}
+        )
     </insert>
 
 
@@ -38,7 +41,7 @@
 
     <select id="find" parameterType="com.orangeart.protocal.request.FindStudentRequest" resultType="StudentDO">
         select
-        <include refid="columns"/>
+        id,<include refid="base_columns"/>,timeCreated,timeModified
         from student
         WHERE
         <include refid="find_condition"/>

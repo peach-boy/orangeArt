@@ -18,7 +18,7 @@ public class StudentVO {
 
     private Integer status;
 
-    private String description;
+    private String remark;
 
     public Integer getId() {
         return id;
@@ -60,11 +60,11 @@ public class StudentVO {
         this.status = status;
     }
 
-    public String getDescription() {
-        return description;
+    public String getRemark() {
+        return remark;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 }

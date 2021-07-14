@@ -15,8 +15,7 @@ import java.util.Date;
 public class CreateStudentRequest {
     private String name;
 
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-    private Date birthYear;
+    private String birthYear;
 
     private String address;
 
@@ -26,6 +25,9 @@ public class CreateStudentRequest {
 
     private Integer channel;
 
+    private String remark;
+
+
     public String getName() {
         return name;
     }
@@ -34,11 +36,11 @@ public class CreateStudentRequest {
         this.name = name;
     }
 
-    public Date getBirthYear() {
+    public String getBirthYear() {
         return birthYear;
     }
 
-    public void setBirthYear(Date birthYear) {
+    public void setBirthYear(String birthYear) {
         this.birthYear = birthYear;
     }
 
@@ -74,5 +76,11 @@ public class CreateStudentRequest {
         this.channel = channel;
     }
 
+    public String getRemark() {
+        return remark;
+    }
 
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
 }
