@@ -3,8 +3,10 @@ package com.orangeart.web;
 import com.orangeart.protocal.ApiResponse;
 import com.orangeart.protocal.Pagination;
 import com.orangeart.protocal.model.StudentVO;
+import com.orangeart.protocal.request.CreateClassRequest;
 import com.orangeart.protocal.request.CreateStudentRequest;
 import com.orangeart.protocal.request.FindStudentRequest;
+import com.orangeart.service.ClassService;
 import com.orangeart.service.StudentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 
 /**
@@ -26,6 +30,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/class")
 public class ClassController {
 
+    @Resource
+    private ClassService classService;
+
     @ApiOperation(value = "查询所有班级", notes = "getAllByStudentId")
     @GetMapping("/getAllByStudentId")
     public ApiResponse<Pagination<StudentVO>> getAllByStudentId() {
@@ -35,10 +42,9 @@ public class ClassController {
 
     @ApiOperation(value = "录入班级", notes = "create")
     @PostMapping("/create")
-    public ApiResponse<Boolean> create() {
-        return null;
+    public ApiResponse<Boolean> create(CreateClassRequest request) {
+        return ApiResponse.success(classService.create(request));
     }
-
 
 
 }

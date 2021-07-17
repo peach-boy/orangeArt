@@ -1,5 +1,7 @@
 package com.orangeart.domain.model;
 
+import lombok.Data;
+
 import java.util.Date;
 
 /**
@@ -8,6 +10,7 @@ import java.util.Date;
  * @Date: 2021/3/15 22:30
  * @Email:1414924381@qq.com
  */
+
 public class BaseDO {
     private Integer id;
 

@@ -1,5 +1,7 @@
 package com.orangeart.protocal;
 
+import lombok.Data;
+
 /**
  * @Description: TODO
  * @Auther: xiantao.wu

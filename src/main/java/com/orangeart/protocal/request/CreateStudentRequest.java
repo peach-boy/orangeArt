@@ -2,6 +2,7 @@ package com.orangeart.protocal.request;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
@@ -12,6 +13,7 @@ import java.util.Date;
  * @Date: 2021/3/17 21:30
  * @Email:1414924381@qq.com
  */
+@Data
 public class CreateStudentRequest {
     private String name;
 
@@ -28,59 +30,4 @@ public class CreateStudentRequest {
     private String remark;
 
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getBirthYear() {
-        return birthYear;
-    }
-
-    public void setBirthYear(String birthYear) {
-        this.birthYear = birthYear;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
-    public Integer getGender() {
-        return gender;
-    }
-
-    public void setGender(Integer gender) {
-        this.gender = gender;
-    }
-
-    public Integer getChannel() {
-        return channel;
-    }
-
-    public void setChannel(Integer channel) {
-        this.channel = channel;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
 }

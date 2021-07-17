@@ -1,78 +1,26 @@
 package com.orangeart.domain.model;
 
+import lombok.Data;
+
+import java.sql.Time;
 import java.util.Date;
 
 /**
  * 班级表
  */
+@Data
 public class ClassDO extends BaseDO {
-    private String name;
+    private Integer weekDay;
 
-    private Date birthYear;
+    private Time beginTime;
 
-    private Integer gender;
+    private Time endTime;
 
-    private String address;
-
-    private Integer channel;
-
-    private Integer status;
+    private Integer subjectId;
 
     private String remark;
 
-    public String getName() {
-        return name;
-    }
+    private Integer status;
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public Date getBirthYear() {
-        return birthYear;
-    }
-
-    public void setBirthYear(Date birthYear) {
-        this.birthYear = birthYear;
-    }
-
-    public Integer getGender() {
-        return gender;
-    }
-
-    public void setGender(Integer gender) {
-        this.gender = gender;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Integer getChannel() {
-        return channel;
-    }
-
-    public void setChannel(Integer channel) {
-        this.channel = channel;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
 }
