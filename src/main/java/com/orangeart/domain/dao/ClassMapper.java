@@ -19,7 +19,6 @@ import java.util.List;
 public interface ClassMapper {
     int insert(ClassDO classDO);
 
-    List<ClassDO>
 
     List<ClassDO> find(FindClassRequest request);
 

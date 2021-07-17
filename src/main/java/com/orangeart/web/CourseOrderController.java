@@ -2,13 +2,19 @@ package com.orangeart.web;
 
 import com.orangeart.protocal.ApiResponse;
 import com.orangeart.protocal.Pagination;
+import com.orangeart.protocal.model.CourseOrderVO;
 import com.orangeart.protocal.model.StudentVO;
+import com.orangeart.protocal.request.CreateCourseOrderRequest;
+import com.orangeart.protocal.request.FindCourseOrderRequest;
+import com.orangeart.service.CourseOrderService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 
 /**
@@ -23,16 +29,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class CourseOrderController {
 
 
-    @ApiOperation(value = "课件查询", notes = "find")
+    @Resource
+    private CourseOrderService courseOrderService;
+
+    @ApiOperation(value = "课件订单查询", notes = "find")
     @GetMapping("/find")
-    public ApiResponse<Pagination<StudentVO>> find() {
-        return null;
+    public ApiResponse<Pagination<CourseOrderVO>> find(FindCourseOrderRequest request) {
+        return ApiResponse.success(courseOrderService.find(request));
     }
 
 
-    @ApiOperation(value = "录入课件", notes = "create")
+    @ApiOperation(value = "录入课程订单", notes = "create")
     @PostMapping("/create")
-    public ApiResponse<Boolean> create() {
-        return null;
+    public ApiResponse<Boolean> create(CreateCourseOrderRequest request) {
+        return ApiResponse.success(courseOrderService.create(request));
     }
 }

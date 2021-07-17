@@ -20,6 +20,7 @@ public class Pagination<T> implements Serializable {
     private int pageNo;
     private int totalPage;
 
+
     public Pagination() {
     }
 

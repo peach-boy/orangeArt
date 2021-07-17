@@ -12,7 +12,9 @@ public enum ErrorCode {
 
     ORDER_IS_PENDDING(1000100003, "订单支付中"),
     ALREADY_PAY(1000100004, "订单已支付"),
-    LOCKING(1000100003, "锁定中")
+    LOCKING(1000100005, "锁定中"),
+    STUDENT_NOT_EXSIT(1000100006, "学员不存在"),
+
     ;
 
 

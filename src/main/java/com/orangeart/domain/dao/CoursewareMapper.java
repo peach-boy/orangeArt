@@ -1,5 +1,6 @@
 package com.orangeart.domain.dao;
 
+import com.orangeart.domain.model.CoursewareDO;
 import com.orangeart.domain.model.StudentDO;
 import com.orangeart.protocal.request.FindStudentRequest;
 import org.apache.ibatis.annotations.Mapper;
@@ -15,7 +16,7 @@ import java.util.List;
  */
 @Mapper
 public interface CoursewareMapper {
-    int insert(StudentDO studentDO);
+    int insert(CoursewareDO coursewareDO);
 
     List<StudentDO> find(FindStudentRequest request);
 

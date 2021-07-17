@@ -1,16 +1,15 @@
-package com.orangeart.domain.model;
+package com.orangeart.protocal.model;
 
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-/**
- * 课程订单表
- */
 @Data
-public class CourseOrderDO extends BaseDO {
+public class CourseOrderVO {
     private Integer studentId;
+
+    private String studentName;
 
     private BigDecimal totalAmt;
 
@@ -29,6 +28,4 @@ public class CourseOrderDO extends BaseDO {
     private Integer status;
 
     private Date overTime;
-
-
 }

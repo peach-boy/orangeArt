@@ -2,7 +2,9 @@ package com.orangeart.service;
 
 import com.google.common.collect.Lists;
 import com.orangeart.constant.StudentStatusEnum;
+import com.orangeart.domain.dao.StudentClassRelationMapper;
 import com.orangeart.domain.dao.StudentMapper;
+import com.orangeart.domain.model.StudentClassRelationDO;
 import com.orangeart.domain.model.StudentDO;
 import com.orangeart.protocal.Pagination;
 import com.orangeart.protocal.model.StudentVO;
@@ -24,17 +26,16 @@ import java.util.stream.Collectors;
 public class StudentClassRelationService {
 
     @Resource
-    private StudentMapper studentMapper;
+    private StudentClassRelationMapper studentClassRelationMapper;
 
     public Pagination<StudentVO> find(FindStudentRequest request) {
         return null;
     }
 
     public Boolean create(CreateStudentRequest request) {
-        StudentDO studentDO = new StudentDO();
+        StudentClassRelationDO studentClassRelationDO = new StudentClassRelationDO();
 
-        studentMapper.insert(studentDO);
-
+        studentClassRelationMapper.insert(studentClassRelationDO);
         return Boolean.TRUE;
     }
 

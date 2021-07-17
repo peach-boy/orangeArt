@@ -3,7 +3,8 @@
 <mapper namespace="com.orangeart.domain.dao.StudentMapper">
 
     <sql id="base_columns">
-    name,birthYear,gender,address,channel,status,remark
+        name
+        ,birthYear,gender,address,mobile,channel,status,remark
     </sql>
 
     <insert id="insert" parameterType="com.orangeart.domain.model.StudentDO" keyProperty="id"
@@ -12,10 +13,11 @@
         (<include refid="base_columns"/>)
         values
         (
-         #{name,jdbcType=VARCHAR},
+        #{name,jdbcType=VARCHAR},
         #{birthYear,jdbcType=DATE},
         #{gender,jdbcType=INTEGER},
         #{address,jdbcType=VARCHAR},
+        #{mobile,jdbcType=VARCHAR},
         #{channel,jdbcType=INTEGER},
         #{status,jdbcType=INTEGER},
         #{remark,jdbcType=VARCHAR}
@@ -55,6 +57,20 @@
         from student
         WHERE
         <include refid="find_condition"/>
+    </select>
+
+    <select id="getById" resultType="com.orangeart.domain.model.StudentDO">
+        select
+        id,<include refid="base_columns"/>,timeCreated,timeModified
+        from student
+        where id = #{id}
+    </select>
+
+    <select id="getByName" resultType="com.orangeart.domain.model.StudentDO">
+        select
+        id,<include refid="base_columns"/>,timeCreated,timeModified
+        from student
+        where name = #{name}
     </select>
 
 </mapper>

@@ -2,7 +2,9 @@ package com.orangeart.domain.dao;
 
 import com.orangeart.domain.model.StudentDO;
 import com.orangeart.protocal.request.FindStudentRequest;
+import io.swagger.models.auth.In;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,4 +24,7 @@ public interface StudentMapper {
 
     int findCount(FindStudentRequest request);
 
+    StudentDO getById(@Param("id") Integer id);
+
+    StudentDO getByName(@Param("name") String name);
 }
