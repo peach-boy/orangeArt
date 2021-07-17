@@ -1,7 +1,6 @@
 package com.orangeart.service;
 
-import com.orangeart.domain.dao.CourseOrderMapper;
-import com.orangeart.domain.model.StudentDO;
+import com.orangeart.domain.model.CourseOrderDO;
 import com.orangeart.protocal.Pagination;
 import com.orangeart.protocal.model.StudentVO;
 import com.orangeart.protocal.request.CreateStudentRequest;
@@ -19,9 +18,6 @@ import javax.annotation.Resource;
 @Service
 public class CourseOrderService {
 
-    @Resource
-    private CourseOrderMapper  courseOrderMapper;
-
     public Pagination<StudentVO> find(FindStudentRequest request) {
 
 
@@ -29,9 +25,6 @@ public class CourseOrderService {
     }
 
     public Boolean create(CreateStudentRequest request) {
-        StudentDO studentDO = new StudentDO();
-
-        courseOrderMapper.insert(studentDO);
 
         return Boolean.TRUE;
     }

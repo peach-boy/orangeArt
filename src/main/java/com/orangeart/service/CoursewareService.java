@@ -1,8 +1,5 @@
 package com.orangeart.service;
 
-import com.google.common.collect.Lists;
-import com.orangeart.constant.StudentStatusEnum;
-import com.orangeart.domain.dao.StudentMapper;
 import com.orangeart.domain.model.StudentDO;
 import com.orangeart.protocal.Pagination;
 import com.orangeart.protocal.model.StudentVO;
@@ -11,8 +8,6 @@ import com.orangeart.protocal.request.FindStudentRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @Description: 课件相关
@@ -23,8 +18,6 @@ import java.util.stream.Collectors;
 @Service
 public class CoursewareService {
 
-    @Resource
-    private StudentMapper studentMapper;
 
     public Pagination<StudentVO> find(FindStudentRequest request) {
 
@@ -33,9 +26,7 @@ public class CoursewareService {
     }
 
     public Boolean create(CreateStudentRequest request) {
-        StudentDO studentDO = new StudentDO();
 
-        studentMapper.insert(studentDO);
 
         return Boolean.TRUE;
     }

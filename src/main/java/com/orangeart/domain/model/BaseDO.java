@@ -1,7 +1,5 @@
 package com.orangeart.domain.model;
 
-import lombok.Data;
-
 import java.util.Date;
 
 /**
@@ -12,20 +10,10 @@ import java.util.Date;
  */
 
 public class BaseDO {
-    private Integer id;
 
     private Date timeCreated;
 
     private Date timeModified;
-
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Date getTimeCreated() {
         return timeCreated;

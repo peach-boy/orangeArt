@@ -15,15 +15,15 @@ public class Pagination<T> implements Serializable {
     public static final int MAX_PAGE_SIZE = 200;
     private static final long serialVersionUID = 1L;
     private List<T> data;
-    private int totalCount;
+    private long totalCount;
     private int pageSize;
     private int pageNo;
-    private int totalPage;
+    private long totalPage;
 
     public Pagination() {
     }
 
-    public Pagination(int totalCount, List<T> data, PageRequest request) {
+    public Pagination(long totalCount, List<T> data, PageRequest request) {
         this.totalCount = totalCount;
         this.data = data;
         this.pageNo = request.getPageNo();
@@ -31,12 +31,11 @@ public class Pagination<T> implements Serializable {
         this.totalPage = totalCount / pageSize + (totalCount % pageSize == 0 ? 0 : 1);
     }
 
-
-    public int getTotalCount() {
-        return this.totalCount;
+    public long getTotalCount() {
+        return totalCount;
     }
 
-    public void setTotalCount(int totalCount) {
+    public void setTotalCount(long totalCount) {
         this.totalCount = totalCount;
     }
 
@@ -64,11 +63,11 @@ public class Pagination<T> implements Serializable {
         this.pageNo = pageNo;
     }
 
-    public int getTotalPage() {
+    public long getTotalPage() {
         return totalPage;
     }
 
-    public void setTotalPage(int totalPage) {
+    public void setTotalPage(long totalPage) {
         this.totalPage = totalPage;
     }
 }

@@ -2,16 +2,18 @@ package com.orangeart.service;
 
 import com.google.common.collect.Lists;
 import com.orangeart.constant.StudentStatusEnum;
-import com.orangeart.domain.dao.StudentMapper;
+import com.orangeart.domain.dao.StudentRepository;
 import com.orangeart.domain.model.StudentDO;
 import com.orangeart.protocal.Pagination;
 import com.orangeart.protocal.model.StudentVO;
 import com.orangeart.protocal.request.CreateStudentRequest;
 import com.orangeart.protocal.request.FindStudentRequest;
 import com.orangeart.util.OrangeArtDateUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,17 +26,18 @@ import java.util.stream.Collectors;
 @Service
 public class StudentService {
 
-    @Resource
-    private StudentMapper studentMapper;
+    @Autowired
+    private StudentRepository studentRepository;
 
     public Pagination<StudentVO> find(FindStudentRequest request) {
-        int count = studentMapper.findCount(request);
+        Page<StudentDO> studentDOPage = studentRepository.findAll(PageRequest.of(request.getPageNo(), request.getPageSize()));
+
+        long count = studentDOPage.getTotalElements();
         if (count == 0) {
             return new Pagination<>(0, Lists.newArrayList(), request);
         }
 
-        List<StudentDO> studentDOList = studentMapper.find(request);
-        List studentVOList = studentDOList.stream().map(studentDO -> {
+        List studentVOList = studentDOPage.getContent().stream().map(studentDO -> {
             StudentVO student = new StudentVO();
             student.setId(studentDO.getId());
             student.setName(studentDO.getName());
@@ -45,6 +48,7 @@ public class StudentService {
 
             return student;
         }).collect(Collectors.toList());
+
 
         return new Pagination<>(count, studentVOList, request);
     }
@@ -59,7 +63,7 @@ public class StudentService {
         studentDO.setChannel(request.getChannel());
         studentDO.setStatus(StudentStatusEnum.NEED_PAY.getStatus());
         studentDO.setRemark(request.getRemark());
-        studentMapper.insert(studentDO);
+        studentRepository.save(studentDO);
 
         return Boolean.TRUE;
     }
