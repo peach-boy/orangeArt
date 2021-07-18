@@ -23,4 +23,39 @@
         #{type,jdbcType=INTEGER}
         )
     </insert>
+
+
+    <sql id="find_condition">
+        1 = 1
+        <if test="studentId != null">
+            and studentId = #{studentId}
+        </if>
+        <if test="status != null">
+            and status = #{status}
+        </if>
+        <if test="timeCreatedStart != null">
+            and timeCreated &gt;= #{timeCreatedStart}
+        </if>
+        <if test="timeCreatedEnd != null">
+            and timeCreated &lt;= #{timeCreatedEnd}
+        </if>
+    </sql>
+
+    <select id="find" parameterType="com.orangeart.protocal.request.FindLessonRequest" resultType="LessonDO">
+        select
+        id,<include refid="base_columns"/>,timeCreated,timeModified
+        from lesson
+        WHERE
+        <include refid="find_condition"/>
+        order by id DESC
+        limit #{offset},#{pageSize}
+    </select>
+
+    <select id="findCount" parameterType="com.orangeart.protocal.request.FindLessonRequest" resultType="int">
+        select
+        count(1)
+        from lesson
+        WHERE
+        <include refid="find_condition"/>
+    </select>
 </mapper>

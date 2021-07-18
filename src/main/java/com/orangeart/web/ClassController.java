@@ -2,9 +2,12 @@ package com.orangeart.web;
 
 import com.orangeart.protocal.ApiResponse;
 import com.orangeart.protocal.Pagination;
+import com.orangeart.protocal.model.ClassCascaderItem;
+import com.orangeart.protocal.model.ClassVO;
 import com.orangeart.protocal.model.StudentVO;
 import com.orangeart.protocal.request.CreateClassRequest;
 import com.orangeart.protocal.request.CreateStudentRequest;
+import com.orangeart.protocal.request.FindClassRequest;
 import com.orangeart.protocal.request.FindStudentRequest;
 import com.orangeart.service.ClassService;
 import com.orangeart.service.StudentService;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 /**
@@ -33,10 +37,10 @@ public class ClassController {
     @Resource
     private ClassService classService;
 
-    @ApiOperation(value = "查询所有班级", notes = "getAllByStudentId")
-    @GetMapping("/getAllByStudentId")
-    public ApiResponse<Pagination<StudentVO>> getAllByStudentId() {
-        return null;
+    @ApiOperation(value = "查询所有班级", notes = "find")
+    @GetMapping("/find")
+    public ApiResponse<Pagination<ClassVO>> find(FindClassRequest request) {
+        return ApiResponse.success(classService.find(request));
     }
 
 
@@ -46,5 +50,9 @@ public class ClassController {
         return ApiResponse.success(classService.create(request));
     }
 
-
+    @ApiOperation(value = "查询所有班级", notes = "getAll")
+    @GetMapping("/getAll")
+    public ApiResponse<List<ClassCascaderItem>> find() {
+        return ApiResponse.success(classService.getAll());
+    }
 }

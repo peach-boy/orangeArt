@@ -1,12 +1,13 @@
 package com.orangeart.domain.model;
 
-import io.swagger.models.auth.In;
+import lombok.Data;
 
 import java.util.Date;
 
 /**
  * 课时表
  */
+@Data
 public class LessonDO extends BaseDO{
     private Integer studentId;
 

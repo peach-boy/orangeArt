@@ -1,5 +1,6 @@
 package com.orangeart.domain.model;
 
+import io.swagger.models.auth.In;
 import lombok.Data;
 
 import java.sql.Time;
@@ -10,6 +11,8 @@ import java.util.Date;
  */
 @Data
 public class ClassDO extends BaseDO {
+    private Integer id;
+
     private Integer weekDay;
 
     private Time beginTime;
@@ -22,5 +25,6 @@ public class ClassDO extends BaseDO {
 
     private Integer status;
 
+    private Integer type;
 
 }

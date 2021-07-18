@@ -22,4 +22,6 @@ public class CreateClassRequest {
     private Integer subjectId;
 
     private String remark;
+
+    private Integer type;
 }

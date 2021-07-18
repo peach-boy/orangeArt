@@ -10,7 +10,12 @@ import java.util.Date;
 
 public class OrangeArtDateUtils {
 
+    public final static String TIME_PATTARN = "HH:mm:ss";
+
     public final static String DAY_PATTARN = "YYYY-MM-dd";
+
+    public final static String DAY_TIME_PATTARN = "yyyy-MM-DD hh:mm:ss";
+
 
     public static Date parseStrToDate(String str, String pattarn) {
         try {

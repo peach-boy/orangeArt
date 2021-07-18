@@ -4,7 +4,7 @@
 
     <sql id="base_columns">
         weekDay
-        ,beginTime,endTime,subjectId,status,remark
+        ,beginTime,endTime,subjectId,status,type,remark
     </sql>
 
     <insert id="insert" parameterType="com.orangeart.domain.model.ClassDO" keyProperty="id"
@@ -14,12 +14,58 @@
         values
         (
         #{weekDay,jdbcType=INTEGER},
-        #{beginTime,jdbcType=DATE},
-        #{endTime,jdbcType=DATE},
+        #{beginTime,jdbcType=TIME},
+        #{endTime,jdbcType=TIME},
         #{subjectId,jdbcType=INTEGER},
-        #{status,jdbcType=INTEGER}),
+        #{status,jdbcType=INTEGER},
+        #{type,jdbcType=INTEGER},
         #{remark,jdbcType=VARCHAR}
         )
     </insert>
 
+
+    <sql id="find_condition">
+        1 = 1
+        <if test="subjectId != null">
+            and subjectId = #{subjectId}
+        </if>
+        <if test="status != null">
+            and status = #{status}
+        </if>
+        <if test="type != null">
+            and type = #{type}
+        </if>
+    </sql>
+
+    <select id="find" parameterType="com.orangeart.protocal.request.FindClassRequest" resultType="ClassDO">
+        select
+        id,<include refid="base_columns"/>,timeCreated,timeModified
+        from class
+        WHERE
+        <include refid="find_condition"/>
+        order by id DESC
+        limit #{offset},#{pageSize}
+    </select>
+
+    <select id="findCount" parameterType="com.orangeart.protocal.request.FindClassRequest" resultType="int">
+        select
+        count(1)
+        from class
+        WHERE
+        <include refid="find_condition"/>
+    </select>
+
+    <select id="getAll" resultType="ClassDO">
+        select
+        id,<include refid="base_columns"/>,timeCreated,timeModified
+        from class
+    </select>
+
+    <select id="getById" parameterType="INTEGER" resultType="ClassDO">
+        select
+        id,<include refid="base_columns"/>,timeCreated,timeModified
+        from class
+        WHERE
+        id = #{id}
+    </select>
 </mapper>
