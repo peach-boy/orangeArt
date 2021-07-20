@@ -1,17 +1,14 @@
-package com.orangeart.domain.model;
+package com.orangeart.protocal.model;
 
 import lombok.Data;
 
-/**
- * 课件表
- */
 @Data
-public class CoursewareDO extends BaseDO {
+public class CoursewareVO {
+    private Integer id;
+
     private String coursewareName;
 
     private String fileUrl;
 
     private String remark;
-
-
 }

@@ -9,14 +9,17 @@ import com.orangeart.domain.model.ClassDO;
 import com.orangeart.protocal.Pagination;
 import com.orangeart.protocal.model.ClassCascaderItem;
 import com.orangeart.protocal.model.ClassVO;
+import com.orangeart.protocal.model.SubjectVO;
 import com.orangeart.protocal.request.CreateClassRequest;
 import com.orangeart.protocal.request.FindClassRequest;
-import com.orangeart.util.OrangeArtDateUtils;
+import com.orangeart.util.DatePattarn;
+import com.orangeart.util.DateUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.sql.Time;
+import java.text.DateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -32,6 +35,9 @@ public class ClassService {
     @Resource
     private ClassMapper classMapper;
 
+    @Resource
+    private SubjectService subjectService;
+
     public Pagination<ClassVO> find(FindClassRequest request) {
         int count = classMapper.findCount(request);
         if (count == 0) {
@@ -42,11 +48,14 @@ public class ClassService {
         List<ClassVO> classVOList = classDOList.stream().map(classDO -> {
             ClassVO classVO = new ClassVO();
             classVO.setClassId(classDO.getId());
-
             classVO.setWeekDay(WeekDayEnum.getByCode(classDO.getWeekDay()).getDesc());
-            classVO.setClassTime(classDO.getBeginTime() + "-" + classDO.getEndTime());
-            classVO.setSubjectName("素描");
+
+            String classTinme = getClassTime(classDO);
+            classVO.setClassTime(classTinme);
             classVO.setTypeName(ClassTypeEnum.getByType(classDO.getType()).getDesc());
+
+            SubjectVO subjectVO = subjectService.getById(classDO.getSubjectId());
+            classVO.setSubjectName(subjectVO.getSubjectName());
             return classVO;
         }).collect(Collectors.toList());
 
@@ -56,8 +65,8 @@ public class ClassService {
     public Boolean create(CreateClassRequest request) {
         ClassDO classDO = new ClassDO();
 
-        Date beginTime = OrangeArtDateUtils.parseStrToDate(request.getBeginTime(), OrangeArtDateUtils.TIME_PATTARN);
-        Date endTime = OrangeArtDateUtils.parseStrToDate(request.getEndTime(), OrangeArtDateUtils.TIME_PATTARN);
+        Date beginTime = DateUtils.parseToDate(request.getBeginTime(), DatePattarn.HHmm);
+        Date endTime = DateUtils.parseToDate(request.getEndTime(), DatePattarn.HHmm);
 
         classDO.setBeginTime(new Time(beginTime.getTime()));
         classDO.setEndTime(new Time(endTime.getTime()));
@@ -73,12 +82,15 @@ public class ClassService {
 
     public ClassVO getById(Integer classId) {
         ClassDO classDO = classMapper.getById(classId);
+        SubjectVO subjectVO = subjectService.getById(classDO.getSubjectId());
 
         ClassVO classVO = new ClassVO();
         classVO.setClassId(classDO.getId());
         classVO.setWeekDay(WeekDayEnum.getByCode(classDO.getWeekDay()).getDesc());
-        classVO.setClassTime(classDO.getBeginTime() + "-" + classDO.getEndTime());
-        classVO.setSubjectName("素描");
+
+        String classTime = this.getClassTime(classDO);
+        classVO.setClassTime(classTime);
+        classVO.setSubjectName(subjectVO.getSubjectName());
         classVO.setTypeName(ClassTypeEnum.getByType(classDO.getType()).getDesc());
         return classVO;
     }
@@ -94,7 +106,6 @@ public class ClassService {
 
         classCascaderItemList = classCascaderItemList.stream()
                 .filter(classCascaderItem -> !CollectionUtils.isEmpty(classCascaderItem.getItems())).collect(Collectors.toList());
-
         return classCascaderItemList;
     }
 
@@ -115,8 +126,12 @@ public class ClassService {
             for (ClassDO classDO : classDOList) {
                 if (Objects.equals(classDO.getWeekDay(), i + 1)
                         && Objects.equals(classDO.getType(), classTypeEnum.getType())) {
+
                     ClassCascaderItem item = new ClassCascaderItem();
-                    String className = classDO.getBeginTime() + "-" + classDO.getEndTime() + "-" + classDO.getSubjectId();
+                    SubjectVO subjectVO = subjectService.getById(classDO.getSubjectId());
+
+                    String classTime = this.getClassTime(classDO);
+                    String className =  subjectVO.getSubjectName()+"("+classTime+")";
                     item.setCode(classDO.getId() + "");
                     item.setName(className);
                     item.setItems(null);
@@ -136,5 +151,10 @@ public class ClassService {
         return classCascaderItem;
     }
 
+    private String getClassTime(ClassDO classDO) {
+        String beginDate = DateUtils.parseDateToStr(new Date(classDO.getBeginTime().getTime()), DatePattarn.HHmm);
+        String endDate = DateUtils.parseDateToStr(new Date(classDO.getEndTime().getTime()), DatePattarn.HHmm);
+        return beginDate + "-" + endDate;
+    }
 
 }

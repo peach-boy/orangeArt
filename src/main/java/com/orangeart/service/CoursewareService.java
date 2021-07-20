@@ -9,12 +9,15 @@ import com.orangeart.domain.model.CourseOrderDO;
 import com.orangeart.domain.model.CoursewareDO;
 import com.orangeart.domain.model.StudentDO;
 import com.orangeart.protocal.Pagination;
+import com.orangeart.protocal.model.CoursewareVO;
 import com.orangeart.protocal.model.StudentVO;
+import com.orangeart.protocal.request.CreateCoursewareRequest;
 import com.orangeart.protocal.request.CreateStudentRequest;
 import com.orangeart.protocal.request.FindStudentRequest;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.swing.plaf.IconUIResource;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,12 +39,27 @@ public class CoursewareService {
         return null;
     }
 
-    public Boolean create(CreateStudentRequest request) {
+    public Boolean create(CreateCoursewareRequest request) {
         CoursewareDO coursewareDO = new CoursewareDO();
-
+        coursewareDO.setCoursewareName(request.getCoursewareName());
+        coursewareDO.setRemark(request.getRemark());
         coursewareMapper.insert(coursewareDO);
 
         return Boolean.TRUE;
+    }
+
+    public List<CoursewareVO> getAll() {
+        List<CoursewareDO> coursewareDOList = coursewareMapper.getAll();
+
+        List<CoursewareVO> coursewareVOList = coursewareDOList.stream().map(coursewareDO -> {
+            CoursewareVO coursewareVO = new CoursewareVO();
+            coursewareVO.setId(coursewareDO.getId());
+            coursewareVO.setCoursewareName(coursewareDO.getCoursewareName());
+            coursewareVO.setRemark(coursewareVO.getRemark());
+            return coursewareVO;
+        }).collect(Collectors.toList());
+
+        return coursewareVOList;
     }
 
 }

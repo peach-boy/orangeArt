@@ -1,9 +1,10 @@
 package com.orangeart.domain.dao;
 
+import com.orangeart.domain.model.ClassDO;
 import com.orangeart.domain.model.CoursewareDO;
-import com.orangeart.domain.model.StudentDO;
 import com.orangeart.protocal.request.FindStudentRequest;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,9 +19,12 @@ import java.util.List;
 public interface CoursewareMapper {
     int insert(CoursewareDO coursewareDO);
 
-    List<StudentDO> find(FindStudentRequest request);
-
+    List<CoursewareDO> find(FindStudentRequest request);
 
     int findCount(FindStudentRequest request);
+
+    List<CoursewareDO> getAll();
+
+    CoursewareDO getById(@Param("id") Integer id);
 
 }

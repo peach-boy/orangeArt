@@ -33,11 +33,14 @@
         <if test="status != null">
             and status = #{status}
         </if>
-        <if test="timeCreatedStart != null">
-            and timeCreated &gt;= #{timeCreatedStart}
+        <if test="coursewareId != null">
+            and coursewareId = #{coursewareId}
         </if>
-        <if test="timeCreatedEnd != null">
-            and timeCreated &lt;= #{timeCreatedEnd}
+        <if test="timeStart != null and timeStart != ''">
+            <![CDATA[ and classTime >= #{timeStart} ]]>
+        </if>
+        <if test="timeEnd != null and timeEnd != ''">
+            <![CDATA[ and classTime <= #{timeEnd} ]]>
         </if>
     </sql>
 

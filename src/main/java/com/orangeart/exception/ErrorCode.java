@@ -14,6 +14,7 @@ public enum ErrorCode {
     ALREADY_PAY(1000100004, "订单已支付"),
     LOCKING(1000100005, "锁定中"),
     STUDENT_NOT_EXSIT(1000100006, "学员不存在"),
+    DATE_PARSE_ERROR(1000100007, "日期转换失败"),
 
     ;
 

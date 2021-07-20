@@ -15,13 +15,15 @@ public class FindLessonRequest extends PageRequest {
 
     private Integer studentId;
 
+    private Integer coursewareId;
+
     private Integer type;
 
     private Integer status;
 
-    private String timeCreatedStart;
+    private String timeStart;
 
-    private String timeCreatedEnd;
+    private String timeEnd;
 
 
 }

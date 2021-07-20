@@ -8,7 +8,8 @@ import com.orangeart.protocal.Pagination;
 import com.orangeart.protocal.model.StudentVO;
 import com.orangeart.protocal.request.CreateStudentRequest;
 import com.orangeart.protocal.request.FindStudentRequest;
-import com.orangeart.util.OrangeArtDateUtils;
+import com.orangeart.util.DatePattarn;
+import com.orangeart.util.DateUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -53,7 +54,7 @@ public class StudentService {
         StudentDO studentDO = new StudentDO();
         studentDO.setName(request.getName());
         studentDO.setAddress(request.getAddress());
-        studentDO.setBirthYear(OrangeArtDateUtils.parseStrToDate(request.getBirthYear(), OrangeArtDateUtils.DAY_PATTARN));
+        studentDO.setBirthYear(DateUtils.parseToDate(request.getBirthYear(), DatePattarn.DAY_PATTARN));
         studentDO.setMobile(request.getMobile());
         studentDO.setGender(request.getGender());
         studentDO.setChannel(request.getChannel());

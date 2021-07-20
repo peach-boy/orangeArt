@@ -1,36 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.orangeart.domain.dao.CoursewareMapper">
+<mapper namespace="com.orangeart.domain.dao.SubjectMapper">
 
     <sql id="base_columns">
-        coursewareName
-        ,fileUrl,remark
+        subjectName
     </sql>
 
-    <insert id="insert" parameterType="com.orangeart.domain.model.CoursewareDO" keyProperty="id"
+    <insert id="insert" parameterType="com.orangeart.domain.model.SubjectDO" keyProperty="id"
             useGeneratedKeys="true">
-        insert into courseware
+        insert into subject
         (<include refid="base_columns"/>)
         values
         (
-        #{coursewareName,jdbcType=VARCHAR},
-        #{fileUrl,jdbcType=VARCHAR},
-        #{desc,jdbcType=VARCHAR}
+        #{subjectName,jdbcType=VARCHAR}
         )
     </insert>
 
-    <select id="getAll" resultType="CoursewareDO">
+
+
+    <select id="getAll" resultType="SubjectDO">
         select
         id,<include refid="base_columns"/>,timeCreated,timeModified
-        from courseware
+        from subject
     </select>
 
-    <select id="getById" parameterType="INTEGER" resultType="CoursewareDO">
+    <select id="getById" parameterType="INTEGER" resultType="SubjectDO">
         select
         id,<include refid="base_columns"/>,timeCreated,timeModified
-        from courseware
+        from subject
         WHERE
         id = #{id}
     </select>
-
 </mapper>
